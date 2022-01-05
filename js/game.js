@@ -1089,9 +1089,9 @@ $.setState = function( state ) {
 			lockedWidth: 299,
 			lockedHeight: 49,
 			scale: 3,
-			title: 'JS13KGAMES',
+			title: 'Melvin Games',
 			action: function() {
-				location.href = 'http://js13kgames.com';
+				location.href = 'http://elishadavid.netlify.app';
 				$.mouse.down = 0;
 			}
 		} );
@@ -1207,7 +1207,7 @@ $.setupStates = function() {
 			ctx: $.ctxmg,
 			x: $.cw / 2,
 			y: $.ch / 2 - 100,
-			text: 'RADIUS RAID',
+			text: 'RAID SHOOTER',
 			hspacing: 2,
 			vspacing: 1,
 			halign: 'center',
@@ -1227,7 +1227,7 @@ $.setupStates = function() {
 			ctx: $.ctxmg,
 			x: $.cw / 2,
 			y: $.ch - 172,
-			text: 'CREATED BY JACK RUGILE FOR JS13KGAMES 2013',
+			text: 'CREATED BY MELVINCYPHER 2022',
 			hspacing: 1,
 			vspacing: 1,
 			halign: 'center',
@@ -1342,7 +1342,7 @@ $.setupStates = function() {
 			ctx: $.ctxmg,
 			x: $.cw / 2 - 10,
 			y: creditsTitle.ey + 49,
-			text: 'CREATED FOR JS13KGAMES BY\nINSPIRATION AND SUPPORT\n\nAUDIO PROCESSING\nGAME INSPIRATION AND IDEAS\n\nHTML5 CANVAS REFERENCE\n\nGAME MATH REFERENCE',
+			text: 'CREATED FOR WEBVIUM BY MELVINCYPHER 2022./n/nI GIVE CREDITS TO SPCK EDITOR FOR THE HELP',
 			hspacing: 1,
 			vspacing: 17,
 			halign: 'right',
@@ -1359,7 +1359,7 @@ $.setupStates = function() {
 			ctx: $.ctxmg,
 			x: $.cw / 2 + 10,
 			y: creditsTitle.ey + 49,
-			text: '@JACKRUGILE\n@REZONER, @LOKTAR00, @END3R,\n@AUSTINHALLOCK, @CHANDLERPRALL\nJSFXR BY @MARKUSNEUBRAND\nASTEROIDS, CELL WARFARE,\nSPACE PIPS, AND MANY MORE\nNIHILOGIC HTML5\nCANVAS CHEAT SHEET\nBILLY LAMBERTA FOUNDATION\nHTML5 ANIMATION WITH JAVASCRIPT',
+			text:'@Elisha David(MelvinCypher) CELL WARFARE,\nSPACE PIPS, AND MANY MORE\nPhenomenalz\nHTML5 ANIMATION WITH JAVASCRIPT',
 			hspacing: 1,
 			vspacing: 17,
 			halign: 'left',
