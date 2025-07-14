@@ -15,8 +15,10 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-black">
-      {/* Game takes full screen with original UI */}
-      <GameSimple className="w-full h-screen" />
+      {/* Game container - keeping original working structure */}
+      <div className="flex items-center justify-center min-h-screen">
+        <GameSimple className="w-full max-w-5xl" />
+      </div>
     </div>
   );
 }
