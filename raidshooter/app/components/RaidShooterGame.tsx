@@ -59,6 +59,9 @@ export default function RaidShooterGame({
     up: false, left: false, down: false, right: false
   });
 
+  // Audio system
+  const { playSound, toggleMute, isMuted } = useAudio();
+
   // Game entities
   const [hero, setHero] = useState<Hero>({
     id: 'hero',
