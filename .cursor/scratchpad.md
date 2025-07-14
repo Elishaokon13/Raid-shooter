@@ -202,4 +202,8 @@ Ready to proceed with any of these tasks.
 - If vulnerabilities appear in terminal, run npm audit before proceeding
 - Always ask before using -force git command
 - Entity systems can be implemented effectively using composition and arrays rather than complex inheritance hierarchies
-- Viewport culling with `inView` flags significantly improves performance for off-screen entities 
+- Viewport culling with `inView` flags significantly improves performance for off-screen entities
+- Delta-time based physics ensures consistent gameplay across different frame rates
+- Behavior functions provide flexible AI patterns without complex state machines
+- Time-based spawning with modulo operations creates predictable enemy waves
+- Collision detection optimization is crucial for performance in entity-heavy games 
