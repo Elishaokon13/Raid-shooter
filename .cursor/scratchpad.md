@@ -33,7 +33,7 @@ The user wants to understand the Raid-shooter codebase - a space-themed shoot 'e
 ## Project Status Board
 - [x] Analyze main game architecture ✅ COMPLETED
 - [x] Document entity system ✅ COMPLETED
-- [ ] Review game mechanics
+- [x] Review game mechanics ✅ COMPLETED
 - [ ] Examine audio system
 - [ ] Document UI/interaction systems
 - [ ] Review data persistence
