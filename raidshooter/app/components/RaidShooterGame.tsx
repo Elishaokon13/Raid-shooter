@@ -488,27 +488,39 @@ export default function RaidShooterGame({
     };
 
     const handleTouchStart = (e: TouchEvent) => {
-      e.preventDefault();
-      if (e.touches.length > 0) {
-        const rect = canvas.getBoundingClientRect();
-        mouseRef.current.x = e.touches[0].clientX - rect.left;
-        mouseRef.current.y = e.touches[0].clientY - rect.top;
-        mouseRef.current.down = true;
+      // Only handle canvas touch if virtual controls are not being used
+      const controls = getControlsState();
+      if (!controls.movement.active && !controls.aiming.active) {
+        e.preventDefault();
+        if (e.touches.length > 0) {
+          const rect = canvas.getBoundingClientRect();
+          mouseRef.current.x = e.touches[0].clientX - rect.left;
+          mouseRef.current.y = e.touches[0].clientY - rect.top;
+          mouseRef.current.down = true;
+        }
       }
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      e.preventDefault();
-      if (e.touches.length > 0) {
-        const rect = canvas.getBoundingClientRect();
-        mouseRef.current.x = e.touches[0].clientX - rect.left;
-        mouseRef.current.y = e.touches[0].clientY - rect.top;
+      // Only handle canvas touch if virtual controls are not being used
+      const controls = getControlsState();
+      if (!controls.movement.active && !controls.aiming.active) {
+        e.preventDefault();
+        if (e.touches.length > 0) {
+          const rect = canvas.getBoundingClientRect();
+          mouseRef.current.x = e.touches[0].clientX - rect.left;
+          mouseRef.current.y = e.touches[0].clientY - rect.top;
+        }
       }
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
-      e.preventDefault();
-      mouseRef.current.down = false;
+      // Only handle canvas touch if virtual controls are not being used
+      const controls = getControlsState();
+      if (!controls.movement.active && !controls.aiming.active) {
+        e.preventDefault();
+        mouseRef.current.down = false;
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
