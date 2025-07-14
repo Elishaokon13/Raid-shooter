@@ -428,6 +428,11 @@ export default function RaidShooterGame({
     } else {
       ctx.fillStyle = '#666666';
       ctx.fillText('M: Toggle Mute', 10, 85);
+      
+      // Touch controls hint for touch devices
+      if (isTouchDevice) {
+        ctx.fillText('T: Toggle Touch Controls', 10, 105);
+      }
     }
 
     // Health bar
