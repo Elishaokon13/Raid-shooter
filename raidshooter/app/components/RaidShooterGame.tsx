@@ -380,6 +380,15 @@ export default function RaidShooterGame({
     ctx.fillText(`Score: ${gameStats.score}`, 10, 25);
     ctx.fillText(`Kills: ${gameStats.kills}`, 10, 45);
     ctx.fillText(`Time: ${Math.floor(gameStats.time)}s`, 10, 65);
+    
+    // Mute indicator
+    if (isMuted) {
+      ctx.fillStyle = '#ff0000';
+      ctx.fillText('MUTED (M to unmute)', 10, 85);
+    } else {
+      ctx.fillStyle = '#666666';
+      ctx.fillText('M: Toggle Mute', 10, 85);
+    }
 
     // Health bar
     ctx.fillStyle = '#ff0000';
