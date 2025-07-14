@@ -306,14 +306,21 @@ export default function RaidShooterGame({
     // Collision detection: hero vs enemies
     enemies.forEach(enemy => {
       if (distance(hero, enemy) < hero.radius + enemy.radius) {
-        setHero(prev => ({ ...prev, life: Math.max(0, prev.life - 0.01) }));
-        if (hero.life <= 0) {
-          onGameOver({
-            ...gameStats,
-            score: gameStats.score,
-            time: gameTime.current / 1000,
-          });
-        }
+        setHero(prev => {
+          const newLife = Math.max(0, prev.life - 0.01);
+          if (newLife > 0) {
+            playSound('takingDamage');
+          } else if (prev.life > 0) {
+            // Hero just died
+            playSound('death');
+            onGameOver({
+              ...gameStats,
+              score: gameStats.score,
+              time: gameTime.current / 1000,
+            });
+          }
+          return { ...prev, life: newLife };
+        });
       }
     });
 
