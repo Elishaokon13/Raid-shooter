@@ -442,7 +442,7 @@ export default function RaidShooterGame({
     ctx.fillRect(10, canvas.height - 30, 100 * hero.life, 10);
 
     animationFrameRef.current = requestAnimationFrame(gameLoop);
-  }, [gameState, hero, enemies, bullets, particles, gameStats, createBullet, createEnemy, createParticles, onStatsUpdate, onGameOver]);
+  }, [gameState, hero, enemies, bullets, particles, gameStats, createBullet, createEnemy, createParticles, onStatsUpdate, onGameOver, playSound, isMuted, isTouchDevice, getControlsState]);
 
   // Start game loop
   useEffect(() => {
