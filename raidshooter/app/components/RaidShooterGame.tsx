@@ -552,7 +552,7 @@ export default function RaidShooterGame({
       canvas.removeEventListener('touchmove', handleTouchMove);
       canvas.removeEventListener('touchend', handleTouchEnd);
     };
-  }, []);
+  }, [toggleMute, isTouchDevice, toggleControls, getControlsState]);
 
   if (gameState === 'menu') {
     return (
