@@ -464,6 +464,11 @@ export default function RaidShooterGame({
       if (key === 'm') {
         toggleMute();
       }
+      
+      // Handle virtual controls toggle (T key)
+      if (key === 't' && isTouchDevice) {
+        toggleControls();
+      }
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
