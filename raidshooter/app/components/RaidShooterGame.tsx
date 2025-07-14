@@ -91,6 +91,7 @@ export default function RaidShooterGame({
   const lastFire = useRef<number>(0);
   const lastEnemySpawn = useRef<number>(0);
   const gameTime = useRef<number>(0);
+  const lastLevel = useRef<number>(1);
 
   // Utility functions
   const distance = (a: Entity, b: Entity) => {
