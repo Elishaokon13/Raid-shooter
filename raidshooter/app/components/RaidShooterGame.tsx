@@ -410,6 +410,11 @@ export default function RaidShooterGame({
       if (key in keysRef.current) {
         keysRef.current[key as keyof typeof keysRef.current] = true;
       }
+      
+      // Handle mute toggle
+      if (key === 'm') {
+        toggleMute();
+      }
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
