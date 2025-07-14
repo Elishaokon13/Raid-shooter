@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import useAudio from '../hooks/useAudio';
 import useVirtualControls from '../hooks/useVirtualControls';
+import VirtualJoystick from './VirtualJoystick';
 
 interface GameStats {
   score: number;
