@@ -56,7 +56,8 @@ export default function RaidShooterGame({
   const mouseRef = useRef({ x: 0, y: 0, down: false });
   const keysRef = useRef({
     w: false, a: false, s: false, d: false,
-    up: false, left: false, down: false, right: false
+    up: false, left: false, down: false, right: false,
+    m: false
   });
 
   // Audio system
