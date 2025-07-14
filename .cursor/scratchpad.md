@@ -126,4 +126,6 @@ None at this time - proceeding with initial analysis.
 - Read the file before trying to edit it
 - Include info useful for debugging in program output
 - If vulnerabilities appear in terminal, run npm audit before proceeding
-- Always ask before using -force git command 
+- Always ask before using -force git command
+- Entity systems can be implemented effectively using composition and arrays rather than complex inheritance hierarchies
+- Viewport culling with `inView` flags significantly improves performance for off-screen entities 
