@@ -257,8 +257,12 @@ export default function RaidShooterGame({
       return newHero;
     });
 
-    // Fire bullets
-    if (mouseRef.current.down && currentTime - lastFire.current > config.hero.fireRate) {
+    // Fire bullets - prioritize virtual controls over mouse
+    const controls = getControlsState();
+    const shouldFire = (controls.aiming.firing || mouseRef.current.down) && 
+                      currentTime - lastFire.current > config.hero.fireRate;
+    
+    if (shouldFire) {
       setBullets(prev => [...prev, createBullet(hero.x, hero.y, hero.direction)]);
       lastFire.current = currentTime;
       playSound('shoot');
