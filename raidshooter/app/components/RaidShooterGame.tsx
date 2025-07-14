@@ -275,6 +275,10 @@ export default function RaidShooterGame({
         for (let i = remainingBullets.length - 1; i >= 0; i--) {
           for (let j = remainingEnemies.length - 1; j >= 0; j--) {
             if (distance(remainingBullets[i], remainingEnemies[j]) < remainingBullets[i].radius + remainingEnemies[j].radius) {
+              // Audio feedback
+              playSound('hit');
+              playSound('explosion');
+              
               // Create explosion particles
               setParticles(prev => [...prev, ...createParticles(remainingEnemies[j].x, remainingEnemies[j].y, remainingEnemies[j].color)]);
               
