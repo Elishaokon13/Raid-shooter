@@ -552,8 +552,9 @@ export default function RaidShooterGame({
         <div className="text-center space-y-2">
           <p>Best Score: {gameStats.bestScore.toLocaleString()}</p>
           <div className="text-sm text-gray-400 mt-4">
-            <p>Move: WASD or Arrow Keys</p>
-            <p>Aim/Fire: Mouse/Touch</p>
+            <p>Move: WASD or Arrow Keys{isTouchDevice ? ' or Left Joystick' : ''}</p>
+            <p>Aim/Fire: Mouse{isTouchDevice ? ' or Right Joystick' : ''}</p>
+            {isTouchDevice && <p className="text-xs mt-2">Virtual controls will appear during gameplay</p>}
           </div>
         </div>
       </div>
