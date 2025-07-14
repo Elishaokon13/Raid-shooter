@@ -235,6 +235,7 @@ export default function RaidShooterGame({
     if (mouseRef.current.down && currentTime - lastFire.current > config.hero.fireRate) {
       setBullets(prev => [...prev, createBullet(hero.x, hero.y, hero.direction)]);
       lastFire.current = currentTime;
+      playSound('shoot');
     }
 
     // Spawn enemies
