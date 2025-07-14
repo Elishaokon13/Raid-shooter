@@ -71,7 +71,8 @@ export default function RaidShooterGame({
     showControls, 
     getControlsState, 
     toggleControls, 
-    VirtualJoystick 
+    leftZoneRef,
+    rightZoneRef
   } = useVirtualControls(canvasRef);
 
   // Game entities
