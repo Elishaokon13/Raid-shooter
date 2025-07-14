@@ -64,6 +64,15 @@ export default function RaidShooterGame({
   // Audio system
   const { playSound, toggleMute, isMuted } = useAudio();
 
+  // Virtual controls for touch devices
+  const { 
+    isTouchDevice, 
+    showControls, 
+    getControlsState, 
+    toggleControls, 
+    VirtualJoystick 
+  } = useVirtualControls(canvasRef);
+
   // Game entities
   const [hero, setHero] = useState<Hero>({
     id: 'hero',
