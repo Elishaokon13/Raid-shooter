@@ -185,7 +185,7 @@ export default function GameSimple({ className = '' }: GameSimpleProps) {
   }
 
   return (
-    <div className={`flex items-center justify-center w-full h-full ${className}`}>
+    <div className={`relative ${className}`} style={{ minHeight: '700px' }}>
       <div ref={gameContainerRef} />
     </div>
   );
