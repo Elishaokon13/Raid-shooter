@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { sdk } from '@farcaster/miniapp-sdk';
 import { useMiniKit } from '@coinbase/onchainkit/minikit';
-import Game from '@/components/Game';
+import GameSimple from '@/components/GameSimple';
 
 export default function HomePage() {
   const { context } = useMiniKit();
@@ -27,7 +27,7 @@ export default function HomePage() {
 
       {/* Game container */}
       <div className="flex items-center justify-center">
-        <Game className="w-full max-w-4xl" />
+        <GameSimple className="w-full max-w-5xl" />
       </div>
 
       {/* Footer */}
