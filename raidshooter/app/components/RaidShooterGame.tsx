@@ -602,8 +602,20 @@ export default function RaidShooterGame({
       {/* Virtual Controls Overlay */}
       {showControls && gameState === 'play' && (
         <>
-          <VirtualJoystick position="left" type="movement" />
-          <VirtualJoystick position="right" type="aiming" />
+          <VirtualJoystick 
+            position="left" 
+            type="movement" 
+            isActive={getControlsState().movement.active}
+            value={{ x: getControlsState().movement.x, y: getControlsState().movement.y }}
+            onRef={(ref) => { if (leftZoneRef.current !== ref) leftZoneRef.current = ref; }}
+          />
+          <VirtualJoystick 
+            position="right" 
+            type="aiming" 
+            isActive={getControlsState().aiming.active}
+            value={{ x: 0, y: 0 }}
+            onRef={(ref) => { if (rightZoneRef.current !== ref) rightZoneRef.current = ref; }}
+          />
           
           {/* Controls toggle button */}
           <button
