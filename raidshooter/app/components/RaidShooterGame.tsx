@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
+import useAudio from '../hooks/useAudio';
 
 interface GameStats {
   score: number;
