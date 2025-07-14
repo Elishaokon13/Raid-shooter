@@ -577,12 +577,49 @@ export default function RaidShooterGame({
   }
 
   return (
-    <canvas
-      ref={canvasRef}
-      width={config.canvas.width}
-      height={config.canvas.height}
-      className="border border-gray-600 mx-auto"
-      style={{ touchAction: 'none' }}
-    />
+    <div className="relative">
+      <canvas
+        ref={canvasRef}
+        width={config.canvas.width}
+        height={config.canvas.height}
+        className="border border-gray-600 mx-auto"
+        style={{ touchAction: 'none' }}
+      />
+      
+      {/* Virtual Controls Overlay */}
+      {showControls && gameState === 'play' && (
+        <>
+          <VirtualJoystick position="left" type="movement" />
+          <VirtualJoystick position="right" type="aiming" />
+          
+          {/* Controls toggle button */}
+          <button
+            onClick={toggleControls}
+            className="fixed top-4 right-4 w-8 h-8 rounded-full bg-black/20 border border-white/30 
+                     flex items-center justify-center text-white/60 hover:text-white/80 
+                     transition-colors backdrop-blur-sm"
+            style={{ touchAction: 'manipulation' }}
+          >
+            ⚙️
+          </button>
+          
+          {/* Enhanced HUD for touch */}
+          <div className="fixed top-4 left-4 text-white/80 text-sm font-mono space-y-1 pointer-events-none">
+            <div>Touch Controls Active</div>
+            <div className="text-xs text-white/60">
+              Left: Move • Right: Aim/Fire
+            </div>
+          </div>
+        </>
+      )}
+      
+      {/* Desktop controls hint */}
+      {!isTouchDevice && gameState === 'play' && (
+        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 
+                      text-white/60 text-xs font-mono text-center pointer-events-none">
+          <div>WASD: Move • Mouse: Aim/Fire • M: Mute</div>
+        </div>
+      )}
+    </div>
   );
 } 
