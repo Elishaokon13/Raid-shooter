@@ -64,6 +64,61 @@ The user wants to understand the Raid-shooter codebase - a space-themed shoot 'e
 6. `$.setState('menu')` → Set initial game state
 7. `$.loop()` → Start main game loop
 
+---
+
+✅ **Task 2 COMPLETED** - Examined entity system components
+
+**Entity Architecture:**
+- **Common Pattern**: All entities follow constructor → update() → render() lifecycle
+- **Composition-Based**: Uses object composition rather than inheritance
+- **Array Management**: Entities stored in global arrays ($.enemies, $.bullets, etc.)
+- **Collision Detection**: Distance-based collision using `$.util.distance()` and `$.util.arcInRect()`
+- **Viewport Culling**: Entities track `inView` state to optimize rendering
+
+**Core Entity Types:**
+
+1. **Hero** (player):
+   - Position: Center of game world ($.ww/2, $.wh/2)
+   - Movement: WASD input with acceleration/deceleration physics
+   - Weapon System: Configurable fire rate, spread, bullet count, damage
+   - Health: Life value with damage feedback visual effects
+   - Collision: Takes damage from enemy contact
+
+2. **Enemy** (13 types):
+   - **Behavior-Driven**: Each type has unique behavior function
+   - **Spawning**: Spawn from screen edges with different patterns
+   - **AI Types**: Straight movement, diagonal, homing, splitters, wanderers, stealthy, etc.
+   - **Scaling**: Difficulty increases with level progression
+   - **Health Bar**: Visual health indicator when damaged
+   - **Death Effects**: Explosions, particles, score popups on destruction
+
+3. **Bullet** (projectiles):
+   - **Physics**: Direction-based movement with trail rendering
+   - **Damage System**: Configurable damage, piercing capabilities
+   - **Collision**: Tracks hit enemies to prevent multi-hit
+   - **Visual Effects**: Particle trails and hit effects
+
+4. **Powerup** (5 types):
+   - **Types**: Health Pack, Slow Enemies, Fast Shot, Triple Shot, Pierce Shot
+   - **Collection**: Proximity-based collection with particle effects
+   - **Timers**: Time-limited effects tracked in $.powerupTimers array
+   - **Visual**: Text-based UI with colored backgrounds
+
+5. **Explosion** (death effects):
+   - **Lifecycle**: Tick-based animation with expanding radius
+   - **Rendering**: Stroke circles with particle effects
+   - **Audio**: Different sounds for normal vs slow-motion explosions
+
+6. **Particle System**:
+   - **ParticleEmitter**: Spawns particles in patterns (circular, directional)
+   - **Particle**: Individual physics-based particles with friction
+   - **Effects**: Used for bullets, explosions, damage, collection feedback
+
+**Entity Relationships:**
+- Hero shoots Bullets → Bullets hit Enemies → Enemies spawn Explosions & Particles
+- Enemies drop Powerups → Hero collects Powerups → Powerups modify Hero weapon
+- All entities interact through collision detection and shared game state
+
 ## Executor's Feedback or Assistance Requests
 None at this time - proceeding with initial analysis.
 
