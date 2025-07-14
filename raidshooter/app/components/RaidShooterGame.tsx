@@ -218,16 +218,24 @@ export default function RaidShooterGame({
     // Update hero
     setHero(prev => {
       const newHero = { ...prev };
+      const controls = getControlsState();
       
-      // Movement
-      if (keysRef.current.w || keysRef.current.up) newHero.vy = Math.max(newHero.vy - 0.5, -config.hero.speed);
-      if (keysRef.current.s || keysRef.current.down) newHero.vy = Math.min(newHero.vy + 0.5, config.hero.speed);
-      if (keysRef.current.a || keysRef.current.left) newHero.vx = Math.max(newHero.vx - 0.5, -config.hero.speed);
-      if (keysRef.current.d || keysRef.current.right) newHero.vx = Math.min(newHero.vx + 0.5, config.hero.speed);
-
-      // Friction
-      newHero.vx *= 0.9;
-      newHero.vy *= 0.9;
+      // Movement - prioritize virtual controls over keyboard
+      if (controls.movement.active) {
+        // Use virtual joystick input
+        newHero.vx = controls.movement.x * config.hero.speed;
+        newHero.vy = controls.movement.y * config.hero.speed;
+      } else {
+        // Use keyboard input
+        if (keysRef.current.w || keysRef.current.up) newHero.vy = Math.max(newHero.vy - 0.5, -config.hero.speed);
+        if (keysRef.current.s || keysRef.current.down) newHero.vy = Math.min(newHero.vy + 0.5, config.hero.speed);
+        if (keysRef.current.a || keysRef.current.left) newHero.vx = Math.max(newHero.vx - 0.5, -config.hero.speed);
+        if (keysRef.current.d || keysRef.current.right) newHero.vx = Math.min(newHero.vx + 0.5, config.hero.speed);
+        
+        // Friction for keyboard input
+        newHero.vx *= 0.9;
+        newHero.vy *= 0.9;
+      }
 
       // Update position
       newHero.x += newHero.vx;
@@ -237,8 +245,14 @@ export default function RaidShooterGame({
       newHero.x = Math.max(newHero.radius, Math.min(canvas.width - newHero.radius, newHero.x));
       newHero.y = Math.max(newHero.radius, Math.min(canvas.height - newHero.radius, newHero.y));
 
-      // Update direction to mouse
-      newHero.direction = Math.atan2(mouseRef.current.y - newHero.y, mouseRef.current.x - newHero.x);
+      // Aiming - prioritize virtual controls over mouse
+      if (controls.aiming.active) {
+        // Use virtual controls aiming
+        newHero.direction = controls.aiming.angle;
+      } else {
+        // Use mouse aiming
+        newHero.direction = Math.atan2(mouseRef.current.y - newHero.y, mouseRef.current.x - newHero.x);
+      }
 
       return newHero;
     });
