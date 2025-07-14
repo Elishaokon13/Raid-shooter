@@ -285,12 +285,23 @@ export default function RaidShooterGame({
               setParticles(prev => [...prev, ...createParticles(remainingEnemies[j].x, remainingEnemies[j].y, remainingEnemies[j].color)]);
               
               // Update stats
-              onStatsUpdate(prevStats => ({
-                ...prevStats,
-                score: prevStats.score + remainingEnemies[j].value,
-                kills: prevStats.kills + 1,
-                time: gameTime.current / 1000,
-              }));
+              onStatsUpdate(prevStats => {
+                const newStats = {
+                  ...prevStats,
+                  score: prevStats.score + remainingEnemies[j].value,
+                  kills: prevStats.kills + 1,
+                  time: gameTime.current / 1000,
+                };
+                
+                // Check for level up (every 10 kills)
+                const newLevel = Math.floor(newStats.kills / 10) + 1;
+                if (newLevel > lastLevel.current) {
+                  lastLevel.current = newLevel;
+                  playSound('levelup');
+                }
+                
+                return newStats;
+              });
               
               // Remove bullet and enemy
               remainingBullets.splice(i, 1);
