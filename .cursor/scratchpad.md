@@ -119,6 +119,65 @@ The user wants to understand the Raid-shooter codebase - a space-themed shoot 'e
 - Enemies drop Powerups → Hero collects Powerups → Powerups modify Hero weapon
 - All entities interact through collision detection and shared game state
 
+---
+
+✅ **Task 3 COMPLETED** - Analyzed game mechanics and physics
+
+**Physics System:**
+- **Delta Time**: Frame-rate independent physics using `$.dt` (delta time)
+- **Movement**: Velocity-based movement with `x += vx * $.dt, y += vy * $.dt`
+- **Acceleration**: Hero uses acceleration/deceleration with friction (0.9 multiplier)
+- **Friction**: Particles and bullets use friction to slow down over time
+- **Bounds**: Entities constrained to world boundaries ($.ww x $.wh = 1600x1200)
+
+**Collision Detection:**
+- **Distance-based**: `$.util.distance()` for circle-circle collisions (hero vs enemies, bullets vs enemies)
+- **Rectangle collision**: `$.util.rectInRect()` for powerup collection
+- **Point-in-rectangle**: `$.util.pointInRect()` for UI and bounds checking
+- **Arc-in-rectangle**: `$.util.arcInRect()` for viewport culling optimization
+- **Precision**: All collision detection accounts for entity radii and boundaries
+
+**Enemy Spawning & AI:**
+- **Spawn System**: Time-based spawning using `Math.floor($.tick) % timeCheck === 0`
+- **Spawn Points**: Enemies spawn from 4 screen edges (top, right, bottom, left)
+- **Behavior Functions**: Each enemy type has unique behavior() function defining movement patterns
+- **AI Types**: Straight line, diagonal, homing, circling, wandering, growing, splitting
+- **Slow Motion**: Global `$.slow` flag divides enemy speeds by `$.slowEnemyDivider` (3)
+
+**Level Progression:**
+- **Kill Requirements**: Each level needs specific kill count (10 + (level+1) * 7)
+- **Enemy Distribution**: Time intervals for spawning each enemy type
+- **Difficulty Scaling**: `$.levelDiffOffset` increases enemy life (+0.25), speed (+0.25), value (+5)
+- **Dynamic Levels**: After predefined levels, difficulty continues scaling automatically
+
+**Powerup System:**
+- **Timer-based**: All powerups last 300 ticks (5 seconds at 60fps)
+- **Health Pack**: Gradual health regeneration (+0.001/tick)
+- **Slow Enemies**: Divides enemy speeds by 3
+- **Fast Shot**: Increases fire rate (5→2) and bullet speed (10→14)
+- **Triple Shot**: Changes bullet count (1→3) with spread pattern
+- **Pierce Shot**: Enables bullet piercing through multiple enemies
+- **Spawn Rate**: 10% chance on enemy death, health pack only spawns when health < 90%
+
+**Game Rules:**
+- **Health System**: Hero starts with 1.0 life, loses 0.0075 per enemy contact
+- **Scoring**: Points based on enemy values (5-65 points per enemy type)
+- **Game Over**: Triggered when hero.life <= 0 with 200-tick death animation
+- **Weapon System**: Configurable fire rate, spread, damage, speed, piercing
+- **Mouse Aiming**: Hero direction follows mouse position with `Math.atan2(dy, dx)`
+
+**Screen & Camera:**
+- **Viewport**: 800x600 visible area in 1600x1200 world
+- **Camera Following**: Smooth camera tracking with easing (division by 30)
+- **Parallax Scrolling**: 4 background layers move at different speeds
+- **Screen Shake**: Rumble system with decay (0.4) for impact feedback
+
+**Physics Constants:**
+- **Hero**: acceleration=0.5, vmax=6, friction=0.9, radius=10
+- **Bullets**: speed=10-14, friction=0.75, damage=1, size=15
+- **Enemies**: Various speeds (0.25-6), radii (5-80), health (1-10)
+- **Particles**: friction=0.85, speeds=2-25, viewport culling for performance
+
 ## Executor's Feedback or Assistance Requests
 Task 2 completed successfully. The entity system is well-structured with clear separation of concerns:
 
